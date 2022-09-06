@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chat-test-247b2": {
+      "hosting": {
+        "chat-consumer": [
+          "chat-test-247b2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chat-test-247b2"
+  }
+}
