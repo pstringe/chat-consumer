@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { mockUsers } from './mock-users';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
-  private authorizedUser: any = null;
+  private authorizedUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
   getUsers() {
     return mockUsers;
@@ -19,21 +21,20 @@ export class UserService {
     return mockUsers.find(user => user.profile.username === username && user.password === password) ?? null;
   }
 
-  getAuthorizedUser() {
+  getAuthorizedUser(): Observable<any> {
     return this.authorizedUser;
   }
 
   login(username: string | null | undefined, password: string | null | undefined) {
-    console.log({username, password})
     const user = this.getUserByUsernameAndPassword(username, password);
     if (user?.profile) {
-      this.authorizedUser = user.profile;
+      this.authorizedUser.next(user.profile);
     }
     return user?.token;
   }
 
   logout(){
-    this.authorizedUser = null;
+    this.authorizedUser.next(null);
   }
   
   constructor() { }

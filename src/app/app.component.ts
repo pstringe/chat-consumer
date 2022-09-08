@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './home/home.component';
+import { Observable } from 'rxjs';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,12 @@ import { HomeComponent } from './home/home.component';
 })
 export class AppComponent {
   title = 'chat-consumer';
+  user: Observable<any> = new Observable();
+
+  ngOnInit(){
+    this.user = this.userService.getAuthorizedUser();
+  }
+
+  constructor(private readonly userService: UserService){}
+
 }

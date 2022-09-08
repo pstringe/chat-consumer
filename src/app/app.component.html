@@ -1,5 +1,5 @@
 <div class="app">
-  <div *ngIf="false; then thenBlock else elseBlock"></div>
+  <div *ngIf="user|async; then thenBlock else elseBlock"></div>
   <ng-template #thenBlock><app-home></app-home></ng-template>
   <ng-template #elseBlock><app-login></app-login></ng-template>
   
