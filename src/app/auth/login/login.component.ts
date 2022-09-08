@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,6 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.loginForm.value)
+    this.userService.login(this.loginForm.value.username, this.loginForm.value.password)
   }
 }

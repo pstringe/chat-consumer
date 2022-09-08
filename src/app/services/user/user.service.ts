@@ -15,7 +15,7 @@ export class UserService {
     return mockUsers.find(user => user.id === id);
   }
 
-  getUserByUsernameAndPassword(username: string, password: string) {  
+  getUserByUsernameAndPassword(username: string | null | undefined, password: string | null | undefined) {  
     return mockUsers.find(user => user.profile.username === username && user.password === password) ?? null;
   }
 
@@ -23,7 +23,8 @@ export class UserService {
     return this.authorizedUser;
   }
 
-  login(username: string, password: string) {
+  login(username: string | null | undefined, password: string | null | undefined) {
+    console.log({username, password})
     const user = this.getUserByUsernameAndPassword(username, password);
     if (user?.profile) {
       this.authorizedUser = user.profile;
