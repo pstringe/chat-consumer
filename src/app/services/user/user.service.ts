@@ -30,6 +30,10 @@ export class UserService {
     }
     return user?.token;
   }
+
+  logout(){
+    this.authorizedUser = null;
+  }
   
   constructor() { }
 }

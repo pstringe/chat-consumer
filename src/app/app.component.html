@@ -1,4 +1,7 @@
 <div class="app">
-  <app-home></app-home>
+  <div *ngIf="false; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock><app-home></app-home></ng-template>
+  <ng-template #elseBlock><app-login></app-login></ng-template>
+  
 </div>
 <router-outlet></router-outlet>
