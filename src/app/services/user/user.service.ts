@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { mockUsers } from './mock-users';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,8 @@ import { mockUsers } from './mock-users';
 
 export class UserService {
   private authorizedUser: BehaviorSubject<any> = new BehaviorSubject(null);
+
+  constructor(private readonly auth: AngularFireAuth) {}
 
   getUsers() {
     return mockUsers;
@@ -30,6 +34,8 @@ export class UserService {
     if (user?.profile) {
       this.authorizedUser.next(user.profile);
     }
+    //authenticate with firebase custom auth
+    this.auth.signInWithCustomToken(user?.token ?? '');
     return user?.token;
   }
 
@@ -37,5 +43,4 @@ export class UserService {
     this.authorizedUser.next(null);
   }
   
-  constructor() { }
 }
