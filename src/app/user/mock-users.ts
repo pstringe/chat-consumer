@@ -24,5 +24,13 @@ export const mockUsers = [
             username: 'Bombasto',
         },
         password: 'password',
+    },
+    {
+        id: 4,
+        profile: {
+            name: 'Poitier',
+            username: 'stringerpoitier@gmail.com',
+        },
+        password: '2844Golden',
     }
 ];

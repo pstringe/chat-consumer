@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { UserService } from '../services/user/user.service';
+import { UserService } from '../user/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

@@ -40,6 +40,7 @@ export class UserService {
     }
     //authenticate with firebase custom auth
     this.auth.signInWithCustomToken(user?.token ?? '');
+    console.log('firebase auth state', this.auth.authState);
     return user?.token;
   }
 

@@ -9,8 +9,10 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
-import { UserService } from './services/user/user.service';
+import { UserService } from './user/user.service';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    UserModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
@@ -28,7 +32,6 @@ import { AuthModule } from './auth/auth.module';
     provideMessaging(() => getMessaging())
   ],
   providers: [
-    UserService
   ],
   bootstrap: [AppComponent]
 })
