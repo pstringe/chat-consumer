@@ -10,8 +10,12 @@ import firebase from 'firebase/compat/app';
 
 export class UserService {
   private authorizedUser: BehaviorSubject<any> = new BehaviorSubject(null);
-
+  
   constructor(private readonly auth: AngularFireAuth) {}
+  
+  firebaseAuthState(): Observable<firebase.User | null> {
+    return this.auth.authState;
+  }
 
   getUsers() {
     return mockUsers;
@@ -41,6 +45,7 @@ export class UserService {
 
   logout(){
     this.authorizedUser.next(null);
+    this.auth.signOut();
   }
   
 }
